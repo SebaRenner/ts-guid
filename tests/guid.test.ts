@@ -34,4 +34,26 @@ describe('Guid', () => {
         expect(guid).toBeInstanceOf(Guid);
         expect(guid.value).toBe(emptyGuid);
     });
+
+    it('is a valid guid', () => {
+        // arrange
+        const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+
+        // act
+        const isValid = Guid.isValid(guidValue);
+
+        // assert
+        expect(isValid).toBe(true);
+    });
+
+    it('is a invalid guid (not v4)', () => {
+        // arrange
+        const guidValue = '550e8400-e29b-31d4-a716-446655440000';
+
+        // act
+        const isValid = Guid.isValid(guidValue);
+
+        // assert
+        expect(isValid).toBe(false);
+    });
 });
