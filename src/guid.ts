@@ -1,6 +1,6 @@
 import { UUID, randomUUID } from "crypto";
 
-class Guid {
+export class Guid {
     private _value: UUID;
 
     private constructor(uuid: UUID) {
