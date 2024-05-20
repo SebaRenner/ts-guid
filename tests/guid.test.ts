@@ -26,13 +26,38 @@ describe('Guid', () => {
     it('should create a new guid instance with an empty guid', () => {
         // arrange
         const emptyGuid = '00000000-0000-0000-0000-000000000000';
-
+        
         // act
         const guid = Guid.empty;
 
         // assert
         expect(guid).toBeInstanceOf(Guid);
         expect(guid.value).toBe(emptyGuid);
+    });
+
+    it('should return true if the value of two guid instances are the same', () => {
+        // arrange
+        const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+        const guid1 = Guid.parse(guidValue);
+        const guid2 = Guid.parse(guidValue);
+        
+        // act
+        const result = guid1.equals(guid2);
+
+        // assert
+        expect(result).toBe(true);
+    });
+
+    it('should return false if the value of two guid instances are different', () => {
+        // arrange
+        const guid1 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589e');
+        const guid2 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589f');
+        
+        // act
+        const result = guid1.equals(guid2);
+
+        // assert
+        expect(result).toBe(false);
     });
 
     describe('parse', () => {
