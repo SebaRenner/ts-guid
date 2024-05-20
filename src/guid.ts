@@ -41,4 +41,8 @@ export class Guid {
     public equals(other: Guid): boolean {
         return this.value === other.value;
     }
+
+    public clone(): Guid {
+        return new Guid(this._value);
+    }
 }

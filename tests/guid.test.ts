@@ -10,29 +10,49 @@ describe('Guid', () => {
         jest.clearAllMocks();
     });
 
-    it('should create a new guid instance with a unique identifier', () => {
-        // arrange
-        const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
-        (randomUUID as jest.Mock).mockReturnValue(guidValue);
-
-        // act
-        const guid = Guid.newGuid();
-
-        // assert
-        expect(guid).toBeInstanceOf(Guid);
-        expect(guid.value).toBe(guidValue)
+    describe('newGuid', () => {
+        it('should create a new guid instance with a unique identifier', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+            (randomUUID as jest.Mock).mockReturnValue(guidValue);
+    
+            // act
+            const guid = Guid.newGuid();
+    
+            // assert
+            expect(guid).toBeInstanceOf(Guid);
+            expect(guid.value).toBe(guidValue)
+        });
     });
 
-    it('should create a new guid instance with an empty guid', () => {
-        // arrange
-        const emptyGuid = '00000000-0000-0000-0000-000000000000';
-        
-        // act
-        const guid = Guid.empty;
+    describe('empty', () => {
+        it('should create a new guid instance with an empty guid', () => {
+            // arrange
+            const emptyGuid = '00000000-0000-0000-0000-000000000000';
+            
+            // act
+            const guid = Guid.empty;
 
-        // assert
-        expect(guid).toBeInstanceOf(Guid);
-        expect(guid.value).toBe(emptyGuid);
+            // assert
+            expect(guid).toBeInstanceOf(Guid);
+            expect(guid.value).toBe(emptyGuid);
+        });
+    });
+
+    describe('clone', () => {
+        it('should create a new guid instance with the same value', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+            const guid1 = Guid.parse(guidValue);
+            
+            // act
+            const guid2 = guid1.clone();
+
+            // assert
+            expect(guid2).toBeInstanceOf(Guid);
+            expect(guid2.value).toEqual(guid1.value);
+            expect(guid2 === guid1).toBe(false);
+        });
     });
     
     describe('equals', () => {
@@ -84,7 +104,7 @@ describe('Guid', () => {
                 Guid.parse(someString);
             }).toThrow('Invalid UUID format');
         });
-    })
+    });
 
     describe('tryParse', () => {
         it('should create a guid instance from a valid uuid string', () => {
@@ -110,7 +130,7 @@ describe('Guid', () => {
             // assert
             expect(guid).toBeNull();
         });
-    })
+    });
 
     describe('isValid', () => {
         it('is a valid guid (all lowercase)', () => {
