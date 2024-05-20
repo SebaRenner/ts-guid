@@ -19,11 +19,18 @@ export class Guid {
         return new Guid('00000000-0000-0000-0000-000000000000')
     }
 
-    public static parse(uuid: string) {
+    public static parse(uuid: string): Guid {
         if (!this.isValid(uuid)) {
             throw new Error('Invalid UUID format');
         }
         return new Guid(uuid as UUID);
+    }
+
+    public static tryParse(uuid: string): Guid | null {
+        if (this.isValid(uuid)) {
+            return new Guid(uuid as UUID);
+        }
+        return null;
     }
 
     public static isValid(uuid: string): boolean {

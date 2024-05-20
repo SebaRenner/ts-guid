@@ -34,30 +34,32 @@ describe('Guid', () => {
         expect(guid).toBeInstanceOf(Guid);
         expect(guid.value).toBe(emptyGuid);
     });
-
-    it('should return true if the value of two guid instances are the same', () => {
-        // arrange
-        const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
-        const guid1 = Guid.parse(guidValue);
-        const guid2 = Guid.parse(guidValue);
-        
-        // act
-        const result = guid1.equals(guid2);
-
-        // assert
-        expect(result).toBe(true);
-    });
-
-    it('should return false if the value of two guid instances are different', () => {
-        // arrange
-        const guid1 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589e');
-        const guid2 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589f');
-        
-        // act
-        const result = guid1.equals(guid2);
-
-        // assert
-        expect(result).toBe(false);
+    
+    describe('equals', () => {
+        it('should return true if the value of two guid instances are the same', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+            const guid1 = Guid.parse(guidValue);
+            const guid2 = Guid.parse(guidValue);
+            
+            // act
+            const result = guid1.equals(guid2);
+    
+            // assert
+            expect(result).toBe(true);
+        });
+    
+        it('should return false if the value of two guid instances are different', () => {
+            // arrange
+            const guid1 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589e');
+            const guid2 = Guid.parse('2e405af9-a1e8-4f09-8122-93609a9a589f');
+            
+            // act
+            const result = guid1.equals(guid2);
+    
+            // assert
+            expect(result).toBe(false);
+        });
     });
 
     describe('parse', () => {
@@ -81,6 +83,32 @@ describe('Guid', () => {
             expect(() => {
                 Guid.parse(someString);
             }).toThrow('Invalid UUID format');
+        });
+    })
+
+    describe('tryParse', () => {
+        it('should create a guid instance from a valid uuid string', () => {
+            // arrange
+            const guidString = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+
+            // act
+            const guid = Guid.tryParse(guidString);
+
+            // assert
+            expect(guid).toBeInstanceOf(Guid);
+            expect(guid).toBeDefined();
+            expect(guid?.value).toBe(guidString);
+        });
+
+        it('should return null in case a invalid string is passed', () => {
+            // arrange
+            const someString = 'test123';
+
+            // act
+            const guid = Guid.tryParse(someString);
+
+            // assert
+            expect(guid).toBeNull();
         });
     })
 
