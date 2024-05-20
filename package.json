@@ -1,8 +1,7 @@
 {
   "name": "ts-guid",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TypeScript implementation of C#'s System.Guid struct",
   "scripts": {
     "test": "jest --watchAll"
   },
@@ -10,9 +9,11 @@
     "type": "git",
     "url": "git+https://github.com/SebaRenner/ts-guid.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["typescript", "ts", "guid", "uuid", "identifier", "crypto"],
+  "author": {
+    "name": "Sebastian Renner"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/SebaRenner/ts-guid/issues"
   },
