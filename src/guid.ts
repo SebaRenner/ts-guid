@@ -19,6 +19,13 @@ export class Guid {
         return new Guid('00000000-0000-0000-0000-000000000000')
     }
 
+    public static parse(uuid: string) {
+        if (!this.isValid(uuid)) {
+            throw new Error('Invalid UUID format');
+        }
+        return new Guid(uuid as UUID);
+    }
+
     public static isValid(uuid: string): boolean {
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
         return uuidRegex.test(uuid);

@@ -35,6 +35,30 @@ describe('Guid', () => {
         expect(guid.value).toBe(emptyGuid);
     });
 
+    describe('parse', () => {
+        it('should create a guid instance from a valid uuid string', () => {
+            // arrange
+            const guidString = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+
+            // act
+            const guid = Guid.parse(guidString);
+
+            // assert
+            expect(guid).toBeInstanceOf(Guid);
+            expect(guid.value).toBe(guidString);
+        });
+
+        it('should throw an error in case a invalid string is passed', () => {
+            // arrange
+            const someString = 'test123';
+
+            // act & assert
+            expect(() => {
+                Guid.parse(someString);
+            }).toThrow('Invalid UUID format');
+        });
+    })
+
     describe('isValid', () => {
         it('is a valid guid (all lowercase)', () => {
             // arrange
