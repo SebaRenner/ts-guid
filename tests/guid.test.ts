@@ -35,25 +35,104 @@ describe('Guid', () => {
         expect(guid.value).toBe(emptyGuid);
     });
 
-    it('is a valid guid', () => {
-        // arrange
-        const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+    describe('isValid', () => {
+        it('is a valid guid (all lowercase)', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(true);
+        });
 
-        // act
-        const isValid = Guid.isValid(guidValue);
+        it('is a valid guid (all uppercase)', () => {
+            // arrange
+            const guidValue = '2E405AF9-A1E8-4F09-8122-93609A9A589E';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(true);
+        });
 
-        // assert
-        expect(isValid).toBe(true);
-    });
+        it('is a valid guid (mixed case)', () => {
+            // arrange
+            const guidValue = '2e405AF9-a1E8-4F09-8122-93609a9a589E';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(true);
+        });
+    
+        it('is not a valid guid (version check, 13th character needs to be \'4\')', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-3f09-8122-93609a9a589e';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
 
-    it('is a invalid guid (not v4)', () => {
-        // arrange
-        const guidValue = '550e8400-e29b-31d4-a716-446655440000';
+        it('is not a valid guid (variant check, 17th character needs be within range of \'8-b\')', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-7122-93609a9a589e';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
 
-        // act
-        const isValid = Guid.isValid(guidValue);
+        it('is not a valid guid (too short)', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
 
-        // assert
-        expect(isValid).toBe(false);
+        it('is not a valid guid (too long)', () => {
+            // arrange
+            const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589ef';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
+
+        it('is not a valid guid (non-hex character)', () => {
+            // arrange
+            const guidValue = '2e4X5af9-a1e8-4f09-8122-93609a9a589e';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
+
+        it('is not a valid guid (hyphen misplacment)', () => {
+            // arrange
+            const guidValue = '2e405af-a1e8-4f09-8122-993609a9a589e';
+    
+            // act
+            const isValid = Guid.isValid(guidValue);
+    
+            // assert
+            expect(isValid).toBe(false);
+        });
     });
 });
