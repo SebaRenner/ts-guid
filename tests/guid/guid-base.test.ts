@@ -5,7 +5,7 @@ jest.mock("crypto", () => ({
     randomUUID: jest.fn()
 }));
 
-describe('Guid', () => {
+describe('Guid Base', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
