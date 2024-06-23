@@ -72,4 +72,41 @@ describe('Guid Serializer', () => {
             expect(obj.value).toBe(value);       
         });
     });
+
+    describe('fromJSON', () => {
+        it('should create a guid instance from a valid json string', () => {
+            // arrange
+            const value = "2e405af9-a1e8-4f09-8122-93609a9a589e"
+            const json = `{"value":"${value}"}`;
+
+            // act
+            const guid = Guid.fromJSON(json);
+
+            // assert
+            expect(guid).toBeInstanceOf(Guid);
+            expect(guid.value).toBe(value);
+        });
+
+        it('should throw an error if json doesn\'t contain value key', () => {
+            // arrange
+            const value = "2e405af9-a1e8-4f09-8122-93609a9a589e"
+            const json = `{"key":"${value}"}`;
+
+            // act & assert
+            expect(() => {
+                Guid.fromJSON(json);
+            }).toThrow('JSON does not contain value key');
+        });
+
+        it('should throw an error if value isn\'t a valid uuid', () => {
+            // arrange
+            const someString = "test123"
+            const json = `{"value":"${someString}"}`;
+
+            // act & assert
+            expect(() => {
+                Guid.fromJSON(json);
+            }).toThrow('Invalid UUID format');
+        });
+    });
 });

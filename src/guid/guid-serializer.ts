@@ -27,7 +27,7 @@ Guid.fromString = function(uuid: string): Guid {
 Guid.fromJSON = function(json: string): Guid {
     const obj = JSON.parse(json);
     if (!obj.value) {
-        throw new Error('');
+        throw new Error('JSON does not contain value key');
     }
     return Guid.parse(obj.value)
 }

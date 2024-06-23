@@ -1,7 +1,7 @@
 {
   "name": "ts-guid",
   "version": "1.0.0",
-  "description": "TypeScript implementation of C#'s System.Guid struct",
+  "description": "TypeScript library for generating and validating UUIDv4s",
   "scripts": {
     "build": "rm -rf dist && tsc",
     "test": "jest --watchAll"
