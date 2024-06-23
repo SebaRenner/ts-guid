@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { Guid } from "../src/guid";
+import { Guid } from "../../src/index";
 
 jest.mock("crypto", () => ({
     randomUUID: jest.fn()
