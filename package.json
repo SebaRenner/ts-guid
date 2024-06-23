@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "TypeScript implementation of C#'s System.Guid struct",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "test": "jest --watchAll"
   },
   "repository": {
