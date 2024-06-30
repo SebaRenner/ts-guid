@@ -1,7 +1,7 @@
 import { UUID, randomUUID } from "crypto";
 
 export class Guid {
-    private _value: UUID;
+    private readonly _value: UUID;
 
     private constructor(uuid: UUID) {
         this._value = uuid;
