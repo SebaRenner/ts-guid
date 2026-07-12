@@ -1,20 +1,21 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 import { Guid } from "../../src/index";
+import { Mock } from "vitest";
 
-jest.mock("crypto", () => ({
-    randomUUID: jest.fn()
+vi.mock("crypto", () => ({
+    randomUUID: vi.fn()
 }));
 
 describe('Guid Base', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     describe('newGuid', () => {
         it('should create a new guid instance with a unique identifier', () => {
             // arrange
             const guidValue = '2e405af9-a1e8-4f09-8122-93609a9a589e';
-            (randomUUID as jest.Mock).mockReturnValue(guidValue);
+            (randomUUID as Mock).mockReturnValue(guidValue);
     
             // act
             const guid = Guid.newGuid();

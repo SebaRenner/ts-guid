@@ -5,7 +5,8 @@
   "description": "TypeScript library for generating and validating UUIDv4s",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "test": "jest --watchAll"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -28,11 +29,9 @@
   },
   "homepage": "https://github.com/SebaRenner/ts-guid#readme",
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.5.0",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "@types/node": "26.1.1",
+    "ts-node": "10.9.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
   }
 }

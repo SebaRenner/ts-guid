@@ -1,4 +1,4 @@
-import { UUID, randomUUID } from "crypto";
+import { UUID, randomUUID } from "node:crypto";
 
 export class Guid {
     private readonly _value: UUID;
