@@ -1,6 +1,6 @@
-import { Guid } from "./guid-base";
+import { Guid } from "./guid-base.js";
 
-declare module "./guid-base" {
+declare module "./guid-base.js" {
     interface Guid {
         toString(): string;
         toJSON(): string;

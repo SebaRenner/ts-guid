@@ -1,1 +1,1 @@
-export * from './guid/guid';
+export * from './guid/guid.js';
